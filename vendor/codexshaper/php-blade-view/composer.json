@@ -1,0 +1,36 @@
+{
+	"name": "codexshaper/php-blade-view",
+    "description": "Laravel View with Blade Templating for normal PHP project",
+    "keywords": [
+    	"php", 
+    	"blade", 
+    	"laravel", 
+    	"view"
+    ],
+    "license": "MIT",
+    "homepage": "https://github.com/Codexshaper/php-blade",
+    "support": {
+        "issues": "https://github.com/Codexshaper/php-blade/issues",
+        "source": "https://github.com/Codexshaper/php-blade"
+    },
+    "authors": [
+        {
+            "name": "Md Abu Ahsan Basir",
+            "email": "maab.career@gmail.com"
+        }
+    ],
+    "type": "library",
+    "minimum-stability": "dev",
+    "require": {
+    	"php": "^7.2",
+        "illuminate/view": "^7.12"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.0|^8.0"
+    },
+	"autoload": {
+         "psr-4": {
+           "CodexShaper\\Blade\\": "src/"
+         }
+	 }
+}

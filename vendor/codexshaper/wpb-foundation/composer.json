@@ -1,0 +1,46 @@
+{
+    "name": "codexshaper/wpb-foundation",
+    "description": "Wordpress plugin builder foundation.",
+    "keywords": [
+        "wordpress", 
+        "wpb", 
+        "foundation", 
+        "plugin",
+        "builder"
+    ],
+    "license": "MIT",
+    "homepage": "https://github.com/Codexshaper/wpb-foundatio",
+    "support": {
+        "issues": "https://github.com/Codexshaper/wpb-foundatio/issues",
+        "source": "https://github.com/Codexshaper/wpb-foundatio"
+    },
+    "authors": [
+        {
+            "name": "Md Abu Ahsan Basir",
+            "email": "maab.career@gmail.com"
+        }
+    ],
+    "type": "library",
+    "minimum-stability": "dev",
+    "require": {
+        "php": "^7.2",
+        "illuminate/http": "^7.11",
+        "illuminate/events": "^7.11",
+        "symfony/debug": "^4.4",
+        "illuminate/config": "^7.11",
+        "phpseclib/phpseclib": "^2.0",
+        "symfony/psr-http-message-bridge": "^2.0",
+        "nesbot/carbon": "^2.34",
+        "codexshaper/wpb-router": "^1.0",
+        "codexshaper/php-blade-view": "^1.2",
+        "codexshaper/php-database": "^1.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.0|^8.0"
+    },
+    "autoload": {
+         "psr-4": {
+           "CodexShaper\\WP\\": "src/"
+         }
+     }
+}

@@ -1,2 +1,2 @@
-# wp-oauth2
-OAuth2 implementation for WordPress
+# Description
+WordPress OAuth2 Server implementation

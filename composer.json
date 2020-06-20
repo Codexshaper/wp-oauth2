@@ -1,0 +1,33 @@
+{
+    "name": "codexshaper/wpb-framework",
+    "type": "project",
+    "description": "The Wordpress plugin builder framework.",
+    "keywords": [
+        "wordpress",
+        "plugin",
+        "builder",
+        "wpb"
+    ],
+    "license": "MIT",
+    "require": {
+    	"php": "^7.2",
+        "codexshaper/wpb-foundation": "^1.0",
+        "codexshaper/oauth2": "^1.0"
+    },
+	"autoload": {
+        "classmap": [
+            "database/migrations",
+            "database/seeds"
+        ],
+        "psr-4": {
+           "CodexShaper\\App\\": "app/"
+        }
+	},
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "scripts": {
+        "post-autoload-dump": [
+            "CodexShaper\\WP\\ComposerScripts::postAutoloadDump"
+        ]
+    }
+}

@@ -1,0 +1,37 @@
+{
+    "name": "codexshaper/php-database",
+    "description": "Laravel database and eloquent for php project.",
+    "keywords": [
+        "php", 
+        "laravel",
+        "database",
+        "orm", 
+        "eloquent"
+    ],
+    "license": "MIT",
+    "homepage": "https://github.com/Codexshaper/php-database",
+    "support": {
+        "issues": "https://github.com/Codexshaper/php-database/issues",
+        "source": "https://github.com/Codexshaper/php-database"
+    },
+    "authors": [
+        {
+            "name": "Md Abu Ahsan Basir",
+            "email": "maab.career@gmail.com"
+        }
+    ],
+    "type": "library",
+    "minimum-stability": "dev",
+    "require": {
+        "php": "^7.2",
+        "illuminate/database": "^7.11"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.0|^8.0"
+    },
+    "autoload": {
+         "psr-4": {
+           "CodexShaper\\Database\\": "src/"
+         }
+     }
+}

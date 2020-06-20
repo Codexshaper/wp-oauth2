@@ -1,0 +1,35 @@
+{
+    "name": "codexshaper/wpb-router",
+    "description": "Illuminate router for Wordpress plugin builder.",
+    "keywords": [
+        "wordpress", 
+        "wpb", 
+        "router", 
+        "plugin",
+        "builder"
+    ],
+    "license": "MIT",
+    "homepage": "https://github.com/Codexshaper/wpb-router",
+    "support": {
+        "issues": "https://github.com/Codexshaper/wpb-router/issues",
+        "source": "https://github.com/Codexshaper/wpb-router"
+    },
+    "authors": [
+        {
+            "name": "Md Abu Ahsan Basir",
+            "email": "maab.career@gmail.com"
+        }
+    ],
+    "type": "library",
+    "minimum-stability": "dev",
+    "require": {
+        "symfony/psr-http-message-bridge": "^2.0",
+        "nyholm/psr7": "^1.2",
+        "illuminate/routing": "^7.11"
+    },
+	"autoload": {
+         "psr-4": {
+           "CodexShaper\\Routing\\": "src/"
+         }
+	 }
+}
