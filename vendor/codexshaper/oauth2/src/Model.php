@@ -4,6 +4,7 @@ namespace CodexShaper\OAuth2\Server;
 
 use Carbon\Carbon;
 use CodexShaper\OAuth2\Server\Entities\Client as ClientEntity;
+use CodexShaper\OAuth2\Server\Manager;
 use DateTime;
 
 class Model
@@ -149,6 +150,9 @@ class Model
         if (!$record || !static::handlesGrant($record, $grantType)) {
             return false;
         }
+
+        $scopes = is_array($record->scopes) ? $record->scopes : [];
+        Manager::setScopes($scopes);
 
         return !$record->isConfidential() || hash_equals($record->secret, (string) $clientSecret);
     }

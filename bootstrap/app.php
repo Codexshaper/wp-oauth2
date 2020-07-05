@@ -1,55 +1,50 @@
 <?php
-require_once(ABSPATH.'wp-includes/pluggable.php');
+/**
+ * The file that defines the bootsrap plugin
+ *
+ * @link       https://github.com/maab16
+ * @since      1.0.0
+ *
+ * @package    Codexshaper_Oauth_Server
+ * @subpackage Codexshaper_Oauth_Server/bootstrap
+ */
 
-require_once __DIR__.'/../vendor/autoload.php';
-// require_once __DIR__.'/../routes/web.php';
+require_once ABSPATH . 'wp-includes/pluggable.php';
+require_once __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/../src/helpers.php';
 
-require_once __DIR__. '/../vendor/illuminate/support/helpers.php';
-require_once __DIR__. '/../vendor/codexshaper/wpb-foundation/src/helpers.php';
-require_once __DIR__. '/../vendor/codexshaper/wpb-foundation/src/shortcodes.php';
+use Codexshaper_Oauth_Server\Application;
 
-use CodexShaper\WP\Application;
-use Illuminate\Support\Str;
+$app = ( new Application(
+	array(
+		'paths' => array(
+			'root' => CODEXSHAPER_OAUTH_SERVER_APP_ROOT,
+		),
+	)
+) );
 
-$basePath = Str::finish(dirname(__FILE__), '/');
-if (! defined('PLUGIN_BASE_PATH')) {
-	define('PLUGIN_BASE_PATH', $basePath);
-}
+$container = $app->instance();
 
-$wpb = $app = (new Application)->getInstance();
-
-// require_once PLUGIN_BASE_PATH . '../database/migrations/2014_10_12_000000_create_custom_options_table.php';
-
-// with(new CreateCustomOptionsTable)->up();
-
-
-global $wpb;
-
-$app->singleton(
-    Illuminate\Contracts\Http\Kernel::class,
-    CodexShaper\App\Http\Kernel::class
+$container->singleton(
+	Illuminate\Contracts\Http\Kernel::class,
+	\Codexshaper_Oauth_Server\App\Http\Kernel::class
 );
-$app->singleton(
-    \Illuminate\Contracts\Debug\ExceptionHandler::class,
-    \CodexShaper\App\Exceptions\Handler::class
+$container->singleton(
+	\Illuminate\Contracts\Debug\ExceptionHandler::class,
+	\Codexshaper_Oauth_Server\App\Exceptions\Handler::class
 );
 
-if(\CodexShaper\WP\Support\Facades\Route::exists(\Illuminate\Http\Request::capture())) {
-	try {
+try {
 
-		$kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
+	$kernel = $container->make( \Illuminate\Contracts\Http\Kernel::class );
 
-		$response = $kernel->handle(
-		    $request = Illuminate\Http\Request::capture()
-		);
+	$response = $kernel->handle( \Illuminate\Http\Request::capture() );
 
-		$response->send();
+	$response->send();
 
-	} catch(\Exception $ex) {
-		if(! \CodexShaper\WP\Support\Facades\Route::current()) {
-			return true;
-		}
-		throw new \Exception($ex, 1);
+} catch ( \Exception $ex ) {
+	if ( ! \Codexshaper_Oauth_Server\Support\Facades\Route::current() ) {
+		return true;
 	}
+	throw new \Exception( $ex, 1 );
 }
-

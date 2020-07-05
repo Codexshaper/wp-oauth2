@@ -22,11 +22,11 @@
 		        title="edit">Show</a>
 		        <a 
 			    href="#" 
-			    class="btn btn-success" 
+			    class="btn btn-link text-white" 
 			    @click.prevent="edit(client)"
 			    data-toggle="modal" 
-			    data-target="#createTableModal"> <i class="fas fa-plus"></i>Edit</a>
-		        <a href="#" class="btn btn-link text-red text-right" @click.prevent="removeClient(client)">Remove</a>
+			    data-target="#createTableModal">Edit</a>
+		        <a href="#" class="btn btn-link text-white text-right" @click.prevent="removeClient(client)">Remove</a>
 		    </div>
 		   <!-- ================== collapse  Start ================== -->
 		    <div class="collapse" :id="'collapse_'+index+1">
@@ -60,7 +60,7 @@ export default {
     	client: {
     		name: '',
     		redirect: '',
-    		scope: '',
+    		scopes: '',
     		type: 'password'
     	}
     };
@@ -73,16 +73,15 @@ export default {
   		axios.get("/oauth/clients")
   		.then(res => {
   			this.clients = res.data.clients
-  			console.log(this.clients)
   		})
-  		.catch(err => console.log(err.response))
+  		// .catch(err => console.log(err.response))
   	},
   	reset: function() {
   		this.action = 'create'
   		this.client = {
     		name: '',
     		redirect: '',
-    		scope: '',
+    		scopes: '',
     		type: 'password'
     	}
   	},
@@ -91,14 +90,16 @@ export default {
   		.then(res => {
   			this.clients = res.data.clients
   			this.closeModal()
+        toastr.success("Client added successfully.");
   		})
-  		.catch(err => console.log(err.response))
+  		.catch(err => {
+        toastr.error(err.response.data);
+      })
   	},
   	edit: function(client) {
 
   		this.action = 'edit'
   		let type = ''
-  		console.log(client.personal_access_client)
   		if(client.password_client == true) {
   			type = 'password'
   		}else if(client.personal_access_client == true) {
@@ -111,20 +112,20 @@ export default {
   			id: client.id,
   			name: client.name,
   			redirect: client.redirect,
-  			scope: client.scope,
+  			scopes: client.scopes.toString(),
   			type: type
   		}
-
-  		console.log(this.client);
   	},
   	update: function() {
-  		console.log("upodate");
   		axios.put("/oauth/clients", this.client)
   		.then(res => {
   			this.clients = res.data.clients
   			this.closeModal()
+        toastr.success("Client updated successfully.");
   		})
-  		.catch(err => console.log(err.response))
+  		.catch(err => {
+        toastr.error(err.response.data);
+      })
   	},
   	removeClient: function(client) {
   		Swal.fire({
@@ -142,8 +143,11 @@ export default {
 	           axios.delete("/oauth/clients", {params: data})
 	           .then(res => {
 	           	this.clients = res.data.clients
+              toastr.success("Client removed successfully.");
 	           })
-	           .catch(error => console.log(error.response));
+	          .catch(err => {
+              toastr.error(err.response.data);
+            })
 	        } else if (result.dismiss === Swal.DismissReason.cancel) {
 	            Swal.fire(
 	                'Cancelled',
@@ -152,7 +156,11 @@ export default {
 	            )
 	        }
 	    });
-  	}
+  	},
+    closeModal: function(){
+        window.$('.modal').modal('hide');
+        window.$('.modal-backdrop').remove();
+    },
   }
 };
 </script>
@@ -161,4 +169,10 @@ export default {
 	.card-body {
 		max-width: 100%;
 	}
+  .btn-edit {
+    color: green;
+  }
+  .btn-delete {
+    color: red;
+  }
 </style>

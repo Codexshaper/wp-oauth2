@@ -2,6 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import store from './store'
 import router from './router'
+window.toastr = require('toastr');
 
 Vue.config.productionTip = false
 

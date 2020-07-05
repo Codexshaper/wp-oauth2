@@ -34,10 +34,7 @@ class Manager
      *
      * @var string
      */
-    protected static $scopes = [
-        'read'       => 'Read',
-        'read_write' => 'Read and Write',
-    ];
+    protected static $scopes = [];
 
     /**
      * Default scope.
@@ -98,7 +95,7 @@ class Manager
      */
     public static function setScopes(array $scopes = [])
     {
-        if (!empty($scopes)) {
+        if (empty($scopes)) {
             return;
         }
 
@@ -140,7 +137,7 @@ class Manager
     }
 
     /**
-     * Create a CryptKey instance without permissions check.
+     * Check scope exists or not.
      *
      * @param string $identifier
      *
@@ -148,7 +145,7 @@ class Manager
      */
     public static function hasScope($identifier)
     {
-        return trim($identifier) === '*' || array_key_exists($identifier, static::$scopes);
+        return trim($identifier) === '*' || array_key_exists($identifier, array_flip(static::$scopes));
     }
 
     /**
@@ -160,7 +157,7 @@ class Manager
      */
     public static function isValidateScope($identifier)
     {
-        return array_key_exists($identifier, static::$scopes);
+        return array_key_exists($identifier, array_flip(static::$scopes));
     }
 
     /**

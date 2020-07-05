@@ -44,8 +44,9 @@ class ClientController extends Controller
 
             $client->user_id = $request->user()->getKey();
             $client->name = $request->name;
-            $client->redirect = !empty($request->redirect) ? $request->redirect : 'http://localhost';
             $client->secret = Str::random(40);
+            $client->redirect = !empty($request->redirect) ? $request->redirect : 'http://localhost';
+            $client->scopes = explode(',', $request->scopes);
             $client->personal_access_client = $request->type == 'personal_access' ? 1 : 0;
             $client->password_client = $request->type == 'password' ? 1 : 0;
             $client->authorization_code_client = $request->type == 'authorization_code' ? 1 : 0;
@@ -68,6 +69,7 @@ class ClientController extends Controller
             $client->name = $request->name;
             $client->redirect = !empty($request->redirect) ? $request->redirect : 'http://localhost';
             // $client->secret = Str::random(40);
+            $client->scopes = explode(',', $request->scopes);
             $client->personal_access_client = $request->type == 'personal_access' ? 1 : 0;
             $client->password_client = $request->type == 'password' ? 1 : 0;
             $client->authorization_code_client = $request->type == 'authorization_code' ? 1 : 0;

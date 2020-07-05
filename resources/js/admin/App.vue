@@ -18,3 +18,7 @@ export default {
 <style lang="css">
   @import '~bootstrap/dist/css/bootstrap.css';
 </style>
+
+<style type="scss">
+	@import "~toastr/toastr.scss";
+</style>

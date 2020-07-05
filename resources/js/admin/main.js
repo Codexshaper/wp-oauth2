@@ -20,21 +20,24 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
  * a simple convenience so we don't have to attach every token manually.
  */
 
-let token = document.querySelector('#wpb-admin');
+let token = document.querySelector('#codexshaper-oauth-server-admin');
 
 if (token) {
     window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.getAttribute('csrf-token');
-    window.axios.defaults.baseURL = token.getAttribute('base-url');
+    window.axios.defaults.baseURL = token.getAttribute('base-url')+'/cos';
 } else {
-    console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
+    console.error('CSRF token not found.');
 }
 
 import Vue from 'vue'
 import App from './App.vue'
 import store from './store'
 import router from './router'
-import menuFix from './utils/admin-menu-fix'
+
 window.Swal = require('sweetalert2');
+window.toastr = require('toastr');
+
+toastr.options.closeButton = true
 
 Vue.config.productionTip = false
 
@@ -43,12 +46,8 @@ Vue.mixin(mixin)
 
 /* eslint-disable no-new */
 new Vue({
-  el: '#wpb-admin',
+  el: '#codexshaper-oauth-server-admin',
   store,
   router,
   ...App
 });
-
-
-// fix the admin menu for the slug "vue-app"
-menuFix('wp-oauth');

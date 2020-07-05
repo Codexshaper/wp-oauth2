@@ -29,8 +29,8 @@
                                     <td><input type="text" class="regular-text" id="redirect" v-model="client.redirect" placeholder="http://localhost"></td>
                                 </tr>
                                 <tr>
-                                    <th scope="row"><label for="scope">Scope</label></th>
-                                    <td><input type="text" class="regular-text" id="scope" v-model="client.scope" placeholder="Comma separated ex: create,edit,delete"></td>
+                                    <th scope="row"><label for="scope">Scopes</label></th>
+                                    <td><input type="text" class="regular-text" id="scopes" v-model="client.scopes" placeholder="Comma separated ex: create,edit,delete"></td>
                                 </tr>
                                 <tr>
                                     <th scope="row"><label for="type">Type</label></th>

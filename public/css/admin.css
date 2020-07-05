@@ -1,7 +1,15 @@
 
 
 
+
+
 .card-body[data-v-6868804f] {
-	max-width: 100%;
+		max-width: 100%;
+}
+.btn-edit[data-v-6868804f] {
+    color: green;
+}
+.btn-delete[data-v-6868804f] {
+    color: red;
 }
 

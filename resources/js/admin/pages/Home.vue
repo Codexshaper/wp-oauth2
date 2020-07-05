@@ -11,15 +11,10 @@ export default {
 
   data () {
     return {
-      msg: 'Welcome to Your Vue.js Admin App'
+      msg: 'Welcome to Admin App'
     }
   },
   mounted() {
-  	axios.post('/csrf-token')
-    .then(res => {
-      console.log(res)
-    })
-    .catch(err => console.log(err));
   }
 }
 </script>

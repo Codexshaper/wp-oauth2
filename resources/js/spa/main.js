@@ -26,7 +26,7 @@ let token = document.head.querySelector('meta[name="csrf-token"]');
 if (token) {
     window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
 } else {
-    console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
+    console.error('CSRF token not found.');
 }
 
 import Vue from 'vue'
@@ -36,11 +36,13 @@ import router from './router'
 
 import axios from 'axios'
 
+window.toastr = require('toastr');
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
 new Vue({
-  el: '#wpb-spa-app',
+  el: '#codexshaper-oauth-server-spa-app',
   store,
   router,
   ...App
